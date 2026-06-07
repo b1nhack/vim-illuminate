@@ -276,10 +276,6 @@ function M.setup(opts)
       { desc = 'Move to previous reference' }
     )
   end
-
-  if type(keymaps.select) == 'string' then
-    vim.keymap.set({ 'x', 'o' }, keymaps.select, require('illuminate').textobj_select)
-  end
 end
 
 function M.pause()

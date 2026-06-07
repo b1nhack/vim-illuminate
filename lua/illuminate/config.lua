@@ -28,7 +28,6 @@ local config = {
   keymaps = {
     next = '<A-n>',
     prev = '<A-p>',
-    select = '<A-i>',
   },
 }
 
