@@ -259,6 +259,10 @@ function M.setup(opts)
   config.set(opts)
   local keymaps = config.keymaps()
 
+  if keymaps == nil then
+    return
+  end
+
   if type(keymaps.next) == 'string' then
     vim.keymap.set(
       'n',
