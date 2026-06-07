@@ -4,11 +4,18 @@ Neovim plugin for automatically highlighting other uses of the word under the cu
 
 https://github.com/user-attachments/assets/fc1487cf-aa19-4238-af23-ab1ac2f5744a
 
+# CHANGELOG
+
+* keymap configurable
+* remove textobject
+* remove err notify when no more references
+* configure rename to setup
+
 # Quickstart
 
 Just install the plugin and things will work *just work*, no configuration needed.
 
-You'll also get `<a-n>` and `<a-p>` as keymaps to move between references and `<a-i>` as a textobject for the reference illuminated under the cursor.
+You'll also get `<a-n>` and `<a-p>` as keymaps to move between references.
 
 *Note: Vim users should refer to the [docs](https://github.com/RRethy/vim-illuminate?tab=readme-ov-file#vim-users) for the Vimscript implementation of this plugin.*
 
@@ -16,7 +23,7 @@ You'll also get `<a-n>` and `<a-p>` as keymaps to move between references and `<
 
 ```lua
 -- default configuration
-require('illuminate').configure({
+require('illuminate').setup({
     -- providers: provider used to get references in the buffer, ordered by priority
     providers = {
         'lsp',
@@ -69,8 +76,11 @@ require('illuminate').configure({
     should_enable = function(bufnr) return true end,
     -- case_insensitive_regex: sets regex case sensitivity
     case_insensitive_regex = false,
-    -- disable_keymaps: disable default keymaps
-    disable_keymaps = false,
+    -- keymaps: false to disable
+    keymaps = {
+        next = '<A-n>',
+        prev = '<A-p>',
+    },
 })
 ```
 
@@ -128,7 +138,7 @@ Buffer-local toggle of the pause/resume for vim-illuminate.
 
 # Functions
 
-#### require('illuminate').configure(config)
+#### require('illuminate').setup(config)
 
 Override the default configuration with `config`
 
@@ -191,10 +201,6 @@ Wraps the references unless `wrap` is false (defaults to **'wrapscan'**).
 Move the cursor to the closest references before the cursor which it is not currently on. Wraps the buffer if on the first reference.
 
 Wraps the references unless `wrap` is false (defaults to **'wrapscan'**).
-
-#### require('illuminate').textobj_select()
-
-Selects the reference the cursor is currently on for use as a text-object.
 
 # Vim Users
 
