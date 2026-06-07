@@ -25,7 +25,11 @@ local config = {
   min_count_to_highlight = 1,
   should_enable = nil,
   case_insensitive_regex = false,
-  disable_keymaps = false,
+  keymaps = {
+    next = '<A-n>',
+    prev = '<A-p>',
+    select = '<A-i>',
+  },
 }
 
 function M.set(config_overrides)
@@ -135,8 +139,8 @@ function M.case_insensitive_regex()
   return M.get()['case_insensitive_regex']
 end
 
-function M.disable_keymaps()
-  return M.get()['disable_keymaps']
+function M.keymaps()
+  return M.get()['keymaps']
 end
 
 return M
