@@ -259,8 +259,7 @@ function M.setup(opts)
   config.set(opts)
   local keymaps = config.keymaps()
 
-  if type(keymaps.next) == 'boolean' then
-  elseif type(keymaps.next) == 'string' then
+  if type(keymaps.next) == 'string' then
     vim.keymap.set(
       'n',
       keymaps.next,
@@ -269,8 +268,7 @@ function M.setup(opts)
     )
   end
 
-  if type(keymaps.prev) == 'boolean' then
-  elseif type(keymaps.prev) == 'string' then
+  if type(keymaps.prev) == 'string' then
     vim.keymap.set(
       'n',
       keymaps.prev,
@@ -279,8 +277,7 @@ function M.setup(opts)
     )
   end
 
-  if type(keymaps.select) == 'boolean' then
-  elseif type(keymaps.select) == 'string' then
+  if type(keymaps.select) == 'string' then
     vim.keymap.set({ 'x', 'o' }, keymaps.select, require('illuminate').textobj_select)
   end
 end
