@@ -50,7 +50,7 @@ function M.get()
 end
 
 function M.filetype_override(bufnr)
-  local ft = vim.api.nvim_buf_get_option(bufnr, 'filetype')
+  local ft = vim.api.nvim_get_option_value('filetype', { buf = bufnr })
   return M.get()['filetype_overrides'] and M.get()['filetype_overrides'][ft] or {}
 end
 

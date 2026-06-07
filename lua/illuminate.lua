@@ -163,7 +163,7 @@ function M.on_cursor_moved(bufnr)
   if vim.lsp.get_clients then
     supported = false
     for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
-      if client and client.supports_method('textDocument/documentHighlight') then
+      if client and client:supports_method('textDocument/documentHighlight', bufnr) then
         supported = true
       end
     end

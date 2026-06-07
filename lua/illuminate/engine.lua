@@ -31,7 +31,7 @@ local function buf_should_illuminate(bufnr)
     and util.is_allowed(
       config.filetypes_allowlist(),
       config.filetypes_denylist(),
-      vim.api.nvim_buf_get_option(bufnr, 'filetype')
+      vim.api.nvim_get_option_value('filetype', { buf = bufnr })
     )
 end
 
@@ -159,6 +159,9 @@ function M.refresh_references(bufnr, winid)
   local changedtick = vim.api.nvim_buf_get_changedtick(bufnr)
 
   local timer = vim.loop.new_timer()
+  if timer == nil then
+    return
+  end
   timers[bufnr] = timer
   timer:start(
     config.delay(bufnr),
